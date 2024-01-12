@@ -72,7 +72,7 @@ const insertUser = (request, response) => {
   const query = "INSERT INTO users VALUES (?, ?)";
 
   //id first and then names so thats the order in array
-  db.insert (query, [id,name], (err, result) => {
+  db.get(query, [id,name], (err, result) => {
     
     if (error) {
       console.error(error.message);
@@ -96,7 +96,7 @@ const updateName = (request, response) => {
   //check if this query is right 
   const query = "UPDATE users SET name = ? WHERE id = ?";
 
-  db.run(query, [id,name],(error, result) => {
+  db.get(query, [id,name],(error, result) => {
     if (error) {
       console.error(error.message);
       response.status(400).json({ error: error.message });
